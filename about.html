@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>אודות | מסעדת ויצמן – שלושה דורות של אוכל מרוקאי</title>
+  <meta name="description" content="הכירו את משפחת ויצמן – שלושה דורות של מסורת קולינרית מרוקאית. גלאט כשר, אוכל ביתי אותנטי, חמימות ואירוח בנמל אשדוד.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .generation-badge {
+      display: inline-block;
+      background: rgba(201, 147, 58, 0.12);
+      border: 1px solid var(--border-gold);
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 2px;
+      margin-bottom: 0.75rem;
+      font-family: 'Heebo', sans-serif;
+    }
+    .timeline {
+      position: relative;
+      padding: 3rem 0;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      right: 50%;
+      width: 1px;
+      background: var(--border-gold);
+      transform: translateX(50%);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+    .timeline-item.right { flex-direction: row-reverse; text-align: right; }
+    .timeline-dot {
+      width: 14px;
+      height: 14px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.35rem;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 0 4px rgba(201,147,58,0.15);
+    }
+    .timeline-content {
+      flex: 1;
+    }
+    .timeline-content h3 {
+      font-size: 1.1rem;
+      color: var(--cream);
+      margin-bottom: 0.3rem;
+    }
+    .timeline-content p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+    .timeline-year {
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.25rem;
+      font-family: 'Heebo', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<header id="site-header"></header>
+
+<!-- PAGE HERO -->
+<section class="page-hero" aria-label="כותרת אודות">
+  <div class="page-hero-content">
+    <div class="hero-badge">הסיפור שלנו</div>
+    <h1 class="fade-in">אודות <span class="gold">ויצמן</span></h1>
+    <div class="ornament" style="margin: 0.8rem auto 1rem;" aria-hidden="true"></div>
+    <p class="fade-in fade-in-delay-1">שלושה דורות של אהבה, מסורת ואוכל שמדבר אל הנשמה</p>
+  </div>
+</section>
+
+<!-- ABOUT CONTENT -->
+<main class="about-page" id="main-content">
+
+  <!-- ── Story: Generation 1 ── -->
+  <div class="about-story fade-in">
+    <div class="about-story-text">
+      <span class="generation-badge">דור ראשון</span>
+      <h2>שורשים <span class="accent">מרוקאיים</span></h2>
+      <div class="ornament right" style="margin-right:0; margin-bottom:1.25rem;" aria-hidden="true"></div>
+      <p>
+        הכל התחיל עם סבתא רחל וסבא משה ויצמן, שהגיעו לישראל מהערים הקסומות של מרוקו וברשותם הביאו עמם – מלבד חפציהם – אוצר שלם של טעמים, ניחוחות ומתכונות שעברו בעל פה מדור לדור.
+      </p>
+      <p>
+        המטבח של הסבתא היה ליבת הבית. בכל שישי בבוקר, ריח הקוסקוס ותבלינים כמו כמון, כורכום וכוסברה מילאו את הבית. זו הייתה תפילה קולינרית – לא רק אוכל, אלא זהות, שייכות ואהבה.
+      </p>
+      <p>
+        המתכונים לא נכתבו אף פעם – הם הועברו מיד ליד, מעין לעין, ממטבח ילדות עד מסעדה.
+      </p>
+    </div>
+    <div class="photo-placeholder fade-in fade-in-delay-1" aria-label="תמונת סבתא רחל וסבא משה ויצמן">
+      <i class="fas fa-image" aria-hidden="true"></i>
+      <span>דור ראשון – הסבים</span>
+    </div>
+  </div>
+
+  <!-- ── Story: Generation 2 ── -->
+  <div class="about-story reverse fade-in">
+    <div class="photo-placeholder fade-in fade-in-delay-1" aria-label="תמונה של הדור השני – ההורים">
+      <i class="fas fa-image" aria-hidden="true"></i>
+      <span>דור שני – ההורים</span>
+    </div>
+    <div class="about-story-text">
+      <span class="generation-badge">דור שני</span>
+      <h2>הדרך <span class="accent">למסעדה</span></h2>
+      <div class="ornament right" style="margin-right:0; margin-bottom:1.25rem;" aria-hidden="true"></div>
+      <p>
+        ילדי הסבתא גדלו על אותם טעמים ואותה אהבה. כשהגיע הזמן להקים משפחה, הם לא הותירו את המסורת מאחור – הם בנו עליה.
+      </p>
+      <p>
+        ההחלטה לפתוח מסעדה לא הייתה עסקית גרידא – זו הייתה שליחות. לקחת את האוכל הביתי הזה, את הסלטים הטריים, את הצלעות על האש ואת הלאפה הטרייה – ולהגיש אותם לציבור הרחב עם אותה אהבה שהייתה בבית.
+      </p>
+      <p>
+        ובנמל אשדוד, בין הרכישות לאוניות, מסעדת ויצמן שלחה את ניחוחותיה לרחוב – ואנשים הגיעו.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Story: Generation 3 ── -->
+  <div class="about-story fade-in">
+    <div class="about-story-text">
+      <span class="generation-badge">דור שלישי</span>
+      <h2>המסורת <span class="accent">ממשיכה</span></h2>
+      <div class="ornament right" style="margin-right:0; margin-bottom:1.25rem;" aria-hidden="true"></div>
+      <p>
+        הדור הצעיר של משפחת ויצמן גדל בין קדרות וגריל. הם ספגו את הכל – המתכונות הסודיות, טכניקות הבישול, ועוד יותר חשוב – את הרוח.
+      </p>
+      <p>
+        היום הם מנהלים את המסעדה, שומרים על הרוח המקורית ומוסיפים נגיעות מודרניות. אבל מנת הקוסקוס? אותו מתכון. הצלעות? אותה שיטת תיבול. הלאפה? נאפית מדי יום בידיים.
+      </p>
+      <p>
+        זו לא רק מסעדה. זה מקום שבו כל ביקור הוא המשך לסיפור שהתחיל עשרות שנים מאחור, בבית קטן במרוקו.
+      </p>
+    </div>
+    <div class="photo-placeholder fade-in fade-in-delay-1" aria-label="תמונה של הדור השלישי – הצוות הנוכחי">
+      <i class="fas fa-image" aria-hidden="true"></i>
+      <span>דור שלישי – היום</span>
+    </div>
+  </div>
+
+  <!-- ── Timeline ── -->
+  <section class="values-section fade-in" aria-labelledby="timeline-heading" style="padding-top:3rem;">
+    <h2 id="timeline-heading" class="section-title" style="text-align:center;">הדרך שלנו</h2>
+    <div class="ornament" aria-hidden="true"></div>
+    <div class="timeline">
+      <div class="timeline-item right">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <p class="timeline-year">שנות ה-60</p>
+          <h3>הגעה לישראל</h3>
+          <p>משפחת ויצמן עולה מרוקו לישראל ומביאה עמה מסורת קולינרית עשירה.</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <p class="timeline-year">שנות ה-80</p>
+          <h3>המטבח הביתי מתפרסם</h3>
+          <p>שכנים, חברים ומשפחה מתחילים לבוא רק בשביל לטעום את אוכל הסבתא.</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <p class="timeline-year">הקמה</p>
+          <h3>פתיחת המסעדה</h3>
+          <p>מסעדת ויצמן נפתחת בנמל אשדוד – מהמטבח הביתי לציבור הרחב.</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <p class="timeline-year">היום</p>
+          <h3>דור שלישי ממשיך</h3>
+          <p>הנכדים מנהלים את המסעדה עם אותה אהבה ואותם מתכונים, עד 100 אורחים.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Values ── -->
+  <section class="values-section fade-in" aria-labelledby="values-heading">
+    <h2 id="values-heading" class="section-title" style="text-align:center;">הערכים שלנו</h2>
+    <div class="ornament" aria-hidden="true"></div>
+    <div class="values-grid">
+      <div class="value-card">
+        <i class="fas fa-star-of-david" aria-hidden="true"></i>
+        <h4>כשרות מהדרין</h4>
+        <p>גלאט כשר בהשגחת הרב מחפוד בד"צ יורה דעה. לא פשרה, לא שאלה.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-heart" aria-hidden="true"></i>
+        <h4>אותנטיות</h4>
+        <p>מתכונים שלא שונו. טעמים שלא התפשרו. אוכל כמו בבית.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-hands-holding-heart" aria-hidden="true"></i>
+        <h4>חמימות אירוח</h4>
+        <p>כל סועד מתקבל כאילו הוא משפחה. זה לא סלוגן – זו תרבות.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-seedling" aria-hidden="true"></i>
+        <h4>טריות מדי יום</h4>
+        <p>12 סלטים, לאפה טרייה ובשר מהטוב ביותר – מוכנים כל יום מחדש.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-people-group" aria-hidden="true"></i>
+        <h4>מקום לכולם</h4>
+        <p>מארוחה משפחתית ועד אירוע עסקי, ממסיבת בת-מצווה לארוחה רומנטית.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-leaf" aria-hidden="true"></i>
+        <h4>איכות ללא פשרות</h4>
+        <p>בוחרים את הנתחים הטובים ביותר, הירקות הטריים ביותר. תמיד.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div style="text-align:center; padding:3rem 0;" class="fade-in">
+    <h2 class="section-title">מגיעים לבקר?</h2>
+    <div class="ornament" aria-hidden="true"></div>
+    <p class="section-subtitle">הזמינו שולחן ובואו לחוות את ויצמן בעצמכם</p>
+    <a href="reservation.html" class="btn-gold">הזמינו שולחן</a>
+  </div>
+
+</main>
+
+<footer id="site-footer"></footer>
+<script src="script.js"></script>
+</body>
+</html>

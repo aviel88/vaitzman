@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>הזמנת שולחן | מסעדת ויצמן – נמל אשדוד</title>
+  <meta name="description" content="הזמינו שולחן במסעדת ויצמן – מסעדה מרוקאית כשרה למהדרין בנמל אשדוד. הזמנות אונליין לכל ימות השבוע.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header id="site-header"></header>
+
+<!-- PAGE HERO -->
+<section class="page-hero" aria-label="כותרת הזמנת שולחן">
+  <div class="page-hero-content">
+    <div class="hero-badge">הזמנת שולחן</div>
+    <h1 class="fade-in">הזמינו <span class="gold">שולחן</span></h1>
+    <div class="ornament" style="margin: 0.8rem auto 1rem;" aria-hidden="true"></div>
+    <p class="fade-in fade-in-delay-1">נשמח לקבל אתכם – מלאו את הטופס ונאשר את ההזמנה</p>
+  </div>
+</section>
+
+<!-- RESERVATION SECTION -->
+<main class="reservation-section" id="main-content">
+
+  <!-- Notice -->
+  <div class="reservation-notice fade-in" role="note">
+    <i class="fas fa-info-circle" aria-hidden="true"></i>
+    <p>
+      <strong>הזמנות מתקבלות לימים ראשון–חמישי בלבד</strong> בין השעות 12:00–23:00.
+      <br>לשאלות נוספות ניתן ליצור קשר בטלפון:
+      <a href="tel:088522593" style="color:var(--gold); font-weight:600;">08-852-2593</a>
+    </p>
+  </div>
+
+  <!-- Form -->
+  <div class="form-card fade-in fade-in-delay-1">
+    <form id="reservationForm" novalidate aria-label="טופס הזמנת שולחן">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="resName"><span class="req">*</span> שם מלא</label>
+          <input type="text" id="resName" name="name" placeholder="ישראל ישראלי" required autocomplete="name">
+          <span class="error-msg" role="alert"></span>
+        </div>
+        <div class="form-group">
+          <label for="resPhone"><span class="req">*</span> טלפון</label>
+          <input type="tel" id="resPhone" name="phone" placeholder="050-0000000" required autocomplete="tel">
+          <span class="error-msg" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="resEmail">אימייל</label>
+        <input type="email" id="resEmail" name="email" placeholder="you@example.com" autocomplete="email">
+        <span class="error-msg" role="alert"></span>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="resDate"><span class="req">*</span> תאריך</label>
+          <input type="date" id="resDate" name="date" required>
+          <span class="error-msg" role="alert"></span>
+        </div>
+        <div class="form-group">
+          <label for="resTime"><span class="req">*</span> שעה</label>
+          <select id="resTime" name="time" required>
+            <option value="" disabled selected>בחרו שעה</option>
+            <option>12:00</option>
+            <option>12:30</option>
+            <option>13:00</option>
+            <option>13:30</option>
+            <option>14:00</option>
+            <option>14:30</option>
+            <option>15:00</option>
+            <option>15:30</option>
+            <option>16:00</option>
+            <option>16:30</option>
+            <option>17:00</option>
+            <option>17:30</option>
+            <option>18:00</option>
+            <option>18:30</option>
+            <option>19:00</option>
+            <option>19:30</option>
+            <option>20:00</option>
+            <option>20:30</option>
+            <option>21:00</option>
+            <option>21:30</option>
+            <option>22:00</option>
+            <option>22:30</option>
+            <option>23:00</option>
+          </select>
+          <span class="error-msg" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="resGuests"><span class="req">*</span> מספר סועדים</label>
+        <select id="resGuests" name="guests" required>
+          <option value="" disabled selected>בחרו מספר סועדים</option>
+          <option value="1">1 סועד</option>
+          <option value="2">2 סועדים</option>
+          <option value="3">3 סועדים</option>
+          <option value="4">4 סועדים</option>
+          <option value="5">5 סועדים</option>
+          <option value="6">6 סועדים</option>
+          <option value="7">7 סועדים</option>
+          <option value="8">8 סועדים</option>
+          <option value="9">9 סועדים</option>
+          <option value="10">10 סועדים</option>
+          <option value="11">11 סועדים</option>
+          <option value="12">12 סועדים</option>
+          <option value="13">13 סועדים</option>
+          <option value="14">14 סועדים</option>
+          <option value="15">15 סועדים</option>
+          <option value="16">16 סועדים</option>
+          <option value="17">17 סועדים</option>
+          <option value="18">18 סועדים</option>
+          <option value="19">19 סועדים</option>
+          <option value="20">20+ סועדים (נציג יצור קשר)</option>
+        </select>
+        <span class="error-msg" role="alert"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="resNotes">הערות מיוחדות</label>
+        <textarea id="resNotes" name="notes" placeholder="אלרגיות, בקשות מיוחדות, אירוע מיוחד..."></textarea>
+      </div>
+
+      <div class="form-submit">
+        <button type="submit" class="btn-gold">שלחו הזמנה</button>
+        <p style="margin-top:1rem; font-size:0.8rem; color:var(--text-light);">* שדות חובה. ניצור קשר לאישור ההזמנה תוך 24 שעות.</p>
+      </div>
+
+    </form>
+
+    <!-- Success message -->
+    <div id="reservationSuccess" class="success-overlay" role="status" aria-live="polite">
+      <div class="check-icon"><i class="fas fa-check-circle" aria-hidden="true"></i></div>
+      <h3>ההזמנה נשלחה בהצלחה!</h3>
+      <p>קיבלנו את בקשתכם ונחזור אליכם לאישור תוך 24 שעות.</p>
+      <p style="margin-top:0.5rem;">לשאלות דחופות: <a href="tel:088522593" style="color:var(--gold);">08-852-2593</a></p>
+    </div>
+  </div>
+
+  <!-- Info cards -->
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:1.25rem; margin-top:3rem;">
+    <div class="highlight-card fade-in" style="padding:1.75rem 1.5rem;">
+      <div class="highlight-icon"><i class="fas fa-clock" aria-hidden="true"></i></div>
+      <h3>שעות פעילות</h3>
+      <p>ראשון – חמישי<br>12:00–00:00<br>שישי ושבת: סגור</p>
+    </div>
+    <div class="highlight-card fade-in fade-in-delay-1" style="padding:1.75rem 1.5rem;">
+      <div class="highlight-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
+      <h3>קיבולת</h3>
+      <p>עד 100 אורחים.<br>מסיבות, אירועים ועסקים.<br>חנייה חינם.</p>
+    </div>
+    <div class="highlight-card fade-in fade-in-delay-2" style="padding:1.75rem 1.5rem;">
+      <div class="highlight-icon"><i class="fas fa-phone" aria-hidden="true"></i></div>
+      <h3>צרו קשר</h3>
+      <p><a href="tel:088522593" style="color:var(--gold); text-decoration:none; font-weight:600;">08-852-2593</a><br>לאירועים ושאלות<br>ישירות.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer id="site-footer"></footer>
+<script src="script.js"></script>
+</body>
+</html>
