@@ -25,9 +25,8 @@ function buildHeader() {
   }).join('');
 
   return `
-    <a class="header-logo" href="index.html">
-      ויצמן
-      <span>Weizmann Restaurant</span>
+    <a class="header-logo" href="index.html" aria-label="מסעדת ויצמן - דף הבית">
+      <img src="images/logo-enhanced.png" alt="מסעדת ויצמן">
     </a>
     <nav class="main-nav" aria-label="ניווט ראשי">
       ${navLinks}
