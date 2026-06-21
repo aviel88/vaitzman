@@ -60,7 +60,6 @@ function buildFooter() {
       <div class="footer-col">
         <h4>שעות פעילות</h4>
         <p>ראשון – חמישי: 12:00–22:30</p>
-        <p>שישי ושבת: סגור</p>
       </div>
       <div class="footer-col">
         <h4>צור קשר</h4>
@@ -146,9 +145,10 @@ function initReservationForm() {
     } else if (input.id === 'resDate' && input.value) {
       const d = new Date(input.value);
       const day = d.getDay();
+      // Block days 5-6 (closed)
       if (day === 5 || day === 6) {
         valid = false;
-        msg = 'בימי שישי ושבת המסעדה סגורה. אנא בחרו תאריך בין ראשון לחמישי.';
+        msg = 'אנא בחרו תאריך בין ראשון לחמישי.';
       }
     }
 
