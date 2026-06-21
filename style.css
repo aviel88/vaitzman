@@ -628,7 +628,7 @@ nav.main-nav a.active {
 
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1px;
   background: var(--border-gold);
   border: 1px solid var(--border-gold);
@@ -1132,7 +1132,4 @@ nav.main-nav a.active {
 
 @media (max-width: 480px) {
   .hero h1 { font-size: 2.4rem; }
-  .menu-grid {
-    grid-template-columns: 1fr;
-  }
 }
