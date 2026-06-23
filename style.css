@@ -1049,6 +1049,7 @@ nav.main-nav a.active {
   width: 100%;
   border-collapse: collapse;
   margin-top: 0.5rem;
+  table-layout: auto;
 }
 
 .hours-table tr {
@@ -1056,15 +1057,26 @@ nav.main-nav a.active {
 }
 
 .hours-table td {
-  padding: 0.5rem 0;
-  font-size: 0.9rem;
+  padding: 0.7rem 0;
+  font-size: 0.95rem;
   color: var(--text-light);
 }
 
 .hours-table td:first-child {
   color: var(--cream);
   font-weight: 500;
-  padding-left: 0;
+  padding-inline-start: 0;
+  padding-inline-end: 2.5rem;
+  white-space: nowrap;
+}
+
+.hours-table td:last-child {
+  padding-inline-start: 2.5rem;
+  text-align: left;
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .contact-form-wrap h2 {
