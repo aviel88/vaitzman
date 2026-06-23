@@ -1171,7 +1171,19 @@ nav.main-nav a.active {
   .reservation-section,
   .about-page,
   .contact-section {
-    padding: 3rem 1.25rem;
+    padding: 2rem 1.25rem;
+  }
+  .page-hero {
+    padding: 2.25rem 1.25rem 2rem;
+  }
+  .page-hero h1 {
+    margin-bottom: 0.35rem;
+  }
+  .about-feature-photo {
+    margin-bottom: 2.5rem;
+  }
+  .about-story {
+    margin-bottom: 3rem;
   }
 }
 
