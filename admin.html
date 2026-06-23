@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ניהול תפריט | מסעדת ויצמן</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --burgundy: #6B1A1A;
+      --burgundy-dark: #4A1010;
+      --gold: #C9933A;
+      --gold-light: #E0B05A;
+      --charcoal: #1C1C1C;
+      --charcoal-mid: #2A2A2A;
+      --cream: #F5EFE0;
+      --text-light: #BDB09A;
+      --border-gold: rgba(201, 147, 58, 0.4);
+      --danger: #c0392b;
+      --success: #2d6a4f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Heebo', sans-serif;
+      background: var(--charcoal);
+      color: var(--cream);
+      direction: rtl;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+    /* ── Loading ── */
+    #loadingScreen {
+      position: fixed;
+      inset: 0;
+      background: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .spinner {
+      width: 48px; height: 48px;
+      border: 3px solid var(--border-gold);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Login ── */
+    .login-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1.5rem;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(107,26,26,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 80%, rgba(201,147,58,0.1) 0%, transparent 50%),
+        var(--charcoal);
+    }
+    .login-card {
+      background: var(--charcoal-mid);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,147,58,0.15) inset;
+    }
+    .login-logo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .login-logo h1 {
+      color: var(--gold);
+      font-size: 2.2rem;
+      letter-spacing: 0.02em;
+    }
+    .login-logo p {
+      color: var(--text-light);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+    .login-title {
+      text-align: center;
+      color: var(--cream);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    /* ── Forms ── */
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label {
+      display: block;
+      color: var(--text-light);
+      font-size: 0.82rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.02em;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--charcoal);
+      border: 1px solid var(--border-gold);
+      border-radius: 6px;
+      padding: 0.7rem 0.9rem;
+      color: var(--cream);
+      font-family: 'Heebo', sans-serif;
+      font-size: 0.95rem;
+      direction: rtl;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,147,58,0.15);
+    }
+    .form-group textarea { resize: vertical; min-height: 70px; }
+
+    .btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--charcoal);
+      border: none;
+      border-radius: 6px;
+      padding: 0.75rem 1.4rem;
+      font-family: 'Heebo', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn:hover:not(:disabled) {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(201,147,58,0.25);
+    }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+    .btn.full { width: 100%; padding: 0.85rem; }
+    .btn.ghost {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+    }
+    .btn.ghost:hover:not(:disabled) {
+      background: var(--gold);
+      color: var(--charcoal);
+    }
+    .btn.danger {
+      background: transparent;
+      color: var(--danger);
+      border: 1px solid rgba(192,57,43,0.5);
+      padding: 0.4rem 0.7rem;
+      font-size: 0.82rem;
+    }
+    .btn.danger:hover:not(:disabled) {
+      background: var(--danger);
+      color: white;
+      box-shadow: 0 6px 14px rgba(192,57,43,0.25);
+    }
+
+    .alert {
+      padding: 0.7rem 0.95rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    .alert.show { display: block; }
+    .alert.error {
+      background: rgba(192,57,43,0.15);
+      border: 1px solid rgba(192,57,43,0.45);
+      color: #f6a8a0;
+    }
+    .alert.success {
+      background: rgba(45,106,79,0.15);
+      border: 1px solid rgba(45,106,79,0.45);
+      color: #a8e6c0;
+    }
+
+    /* ── Dashboard ── */
+    .dash-header {
+      background: var(--charcoal-mid);
+      border-bottom: 1px solid var(--border-gold);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .dash-header .brand {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .dash-header .brand small {
+      color: var(--text-light);
+      font-family: 'Heebo', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+    .user-block {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+    .user-block .email {
+      color: var(--text-light);
+      font-size: 0.85rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .panel {
+      background: var(--charcoal-mid);
+      border: 1px solid var(--border-gold);
+      border-radius: 10px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .panel h2 {
+      color: var(--gold);
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .panel h2 i { font-size: 1.05rem; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 1rem;
+    }
+    .form-row .form-group { margin-bottom: 0; }
+
+    /* ── Table ── */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border-gold);
+      border-radius: 8px;
+    }
+    table.items {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+    table.items th,
+    table.items td {
+      padding: 0.85rem 1rem;
+      text-align: right;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      vertical-align: middle;
+    }
+    table.items th {
+      background: var(--burgundy-dark);
+      color: var(--gold);
+      font-family: 'Heebo', sans-serif;
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+    }
+    table.items tr:last-child td { border-bottom: none; }
+    table.items tr:hover td { background: rgba(201,147,58,0.04); }
+    table.items td.name {
+      font-weight: 500;
+      color: var(--cream);
+    }
+    table.items td.desc {
+      color: var(--text-light);
+      font-size: 0.86rem;
+      max-width: 320px;
+    }
+    table.items td.category {
+      color: var(--gold);
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    table.items td.actions {
+      white-space: nowrap;
+      text-align: left;
+    }
+    .row-unavailable td.name,
+    .row-unavailable td.desc { opacity: 0.45; text-decoration: line-through; }
+
+    /* Toggle switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+      vertical-align: middle;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background: #555;
+      border-radius: 24px;
+      transition: background 0.25s;
+    }
+    .slider::before {
+      content: "";
+      position: absolute;
+      height: 18px; width: 18px;
+      right: 3px;
+      top: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.25s;
+    }
+    .switch input:checked + .slider { background: var(--gold); }
+    .switch input:checked + .slider::before { transform: translateX(-20px); }
+
+    .empty {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-light);
+    }
+    .empty i {
+      font-size: 2.5rem;
+      color: var(--border-gold);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .chip {
+      background: var(--charcoal);
+      border: 1px solid var(--border-gold);
+      color: var(--text-light);
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .chip:hover { color: var(--gold); border-color: var(--gold); }
+    .chip.active {
+      background: var(--gold);
+      color: var(--charcoal);
+      border-color: var(--gold);
+      font-weight: 600;
+    }
+
+    @media (max-width: 700px) {
+      .dash-header { padding: 0.85rem 1rem; flex-wrap: wrap; gap: 0.6rem; }
+      .dash-header .brand { font-size: 1.2rem; }
+      .container { padding: 1.25rem 0.9rem 3rem; }
+      .panel { padding: 1.2rem 1rem; }
+      .form-row { grid-template-columns: 1fr; }
+      table.items th,
+      table.items td { padding: 0.6rem 0.7rem; }
+      table.items td.desc { font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="loadingScreen"><div class="spinner"></div></div>
+
+<!-- ── LOGIN ── -->
+<div id="loginScreen" class="login-wrap" style="display:none;">
+  <div class="login-card">
+    <div class="login-logo">
+      <h1>ויצמן</h1>
+      <p>פאנל ניהול</p>
+    </div>
+    <p class="login-title">התחברות מנהל</p>
+    <div id="loginAlert" class="alert error"></div>
+    <form id="loginForm" autocomplete="on">
+      <div class="form-group">
+        <label for="email">אימייל</label>
+        <input type="email" id="email" required autocomplete="email" placeholder="admin@vaitzman.co.il">
+      </div>
+      <div class="form-group">
+        <label for="password">סיסמה</label>
+        <input type="password" id="password" required autocomplete="current-password">
+      </div>
+      <button type="submit" id="loginBtn" class="btn full">התחבר</button>
+    </form>
+  </div>
+</div>
+
+<!-- ── DASHBOARD ── -->
+<div id="dashboard" style="display:none;">
+  <header class="dash-header">
+    <div class="brand">
+      <i class="fas fa-utensils" style="color:var(--gold);"></i>
+      ויצמן <small>· ניהול תפריט</small>
+    </div>
+    <div class="user-block">
+      <span class="email" id="userEmail"></span>
+      <button id="logoutBtn" class="btn ghost" style="padding:0.45rem 1rem; font-size:0.85rem;">
+        <i class="fas fa-sign-out-alt" style="margin-left:0.3rem;"></i>התנתק
+      </button>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Add new item -->
+    <section class="panel">
+      <h2><i class="fas fa-plus-circle"></i>הוספת מנה חדשה</h2>
+      <div id="addAlert" class="alert"></div>
+      <form id="addForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="newName">שם המנה *</label>
+            <input type="text" id="newName" required placeholder="לדוגמה: שיפוד עוף">
+          </div>
+          <div class="form-group">
+            <label for="newCategory">קטגוריה *</label>
+            <select id="newCategory" required>
+              <option value="">בחרו קטגוריה</option>
+              <option>מנות ראשונות וסלטים</option>
+              <option>מנות עיקריות מהגריל</option>
+              <option>תבשילים</option>
+              <option>לחמים מהתנור</option>
+              <option>קינוחים</option>
+              <option>שתייה</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:1rem;">
+          <label for="newDesc">תיאור</label>
+          <textarea id="newDesc" placeholder="תיאור קצר של המנה..."></textarea>
+        </div>
+        <button type="submit" id="addBtn" class="btn">
+          <i class="fas fa-plus" style="margin-left:0.4rem;"></i>הוסף לתפריט
+        </button>
+      </form>
+    </section>
+
+    <!-- Items list -->
+    <section class="panel">
+      <h2><i class="fas fa-list-ul"></i>מנות בתפריט (<span id="itemCount">0</span>)</h2>
+
+      <div class="filter-bar" id="filterBar">
+        <button class="chip active" data-cat="">הכל</button>
+        <button class="chip" data-cat="מנות ראשונות וסלטים">ראשונות</button>
+        <button class="chip" data-cat="מנות עיקריות מהגריל">גריל</button>
+        <button class="chip" data-cat="תבשילים">תבשילים</button>
+        <button class="chip" data-cat="לחמים מהתנור">לחמים</button>
+        <button class="chip" data-cat="קינוחים">קינוחים</button>
+        <button class="chip" data-cat="שתייה">שתייה</button>
+      </div>
+
+      <div id="listAlert" class="alert"></div>
+
+      <div class="table-wrap">
+        <table class="items">
+          <thead>
+            <tr>
+              <th>שם</th>
+              <th>קטגוריה</th>
+              <th>תיאור</th>
+              <th style="text-align:center;">זמין</th>
+              <th style="text-align:left;">פעולות</th>
+            </tr>
+          </thead>
+          <tbody id="itemsBody"></tbody>
+        </table>
+      </div>
+
+      <div id="emptyState" class="empty" style="display:none;">
+        <i class="fas fa-inbox"></i>
+        <p>אין מנות בתפריט עדיין. הוסיפו את המנה הראשונה למעלה.</p>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ============================================================
+   ⚠️ הזן כאן את ה-Publishable Key שלך מ-Supabase
+   (Settings → API → "anon / public" key)
+   ============================================================ */
+const SUPABASE_URL = 'https://umdtmwndmojticrgppib.supabase.co';
+const SUPABASE_KEY = 'PASTE_YOUR_PUBLISHABLE_KEY_HERE';
+
+/* ───────────────────────────────────────────────────────────── */
+
+const supa = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// DOM
+const loadingScreen = document.getElementById('loadingScreen');
+const loginScreen   = document.getElementById('loginScreen');
+const dashboard     = document.getElementById('dashboard');
+const loginForm     = document.getElementById('loginForm');
+const loginBtn      = document.getElementById('loginBtn');
+const loginAlert    = document.getElementById('loginAlert');
+const logoutBtn     = document.getElementById('logoutBtn');
+const userEmailEl   = document.getElementById('userEmail');
+const addForm       = document.getElementById('addForm');
+const addBtn        = document.getElementById('addBtn');
+const addAlert      = document.getElementById('addAlert');
+const itemsBody     = document.getElementById('itemsBody');
+const itemCount     = document.getElementById('itemCount');
+const emptyState    = document.getElementById('emptyState');
+const listAlert     = document.getElementById('listAlert');
+const filterBar     = document.getElementById('filterBar');
+
+let allItems = [];
+let activeFilter = '';
+
+/* ── Helpers ── */
+function showAlert(el, msg, type='error', autoHide=true) {
+  el.className = 'alert show ' + type;
+  el.textContent = msg;
+  if (autoHide) setTimeout(() => el.classList.remove('show'), 4000);
+}
+function escapeHtml(s='') {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ── Auth Flow ── */
+async function checkSession() {
+  const { data: { session } } = await supa.auth.getSession();
+  loadingScreen.style.display = 'none';
+  if (session) {
+    showDashboard(session.user);
+  } else {
+    loginScreen.style.display = 'flex';
+  }
+}
+
+function showDashboard(user) {
+  loginScreen.style.display = 'none';
+  dashboard.style.display = 'block';
+  userEmailEl.textContent = user.email || '';
+  loadItems();
+}
+
+loginForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  loginBtn.disabled = true;
+  loginBtn.textContent = 'מתחבר...';
+  loginAlert.classList.remove('show');
+
+  const { data, error } = await supa.auth.signInWithPassword({ email, password });
+  loginBtn.disabled = false;
+  loginBtn.textContent = 'התחבר';
+
+  if (error) {
+    showAlert(loginAlert, 'התחברות נכשלה: ' + (error.message || 'אנא בדקו את הפרטים'), 'error', false);
+    return;
+  }
+  showDashboard(data.user);
+});
+
+logoutBtn.addEventListener('click', async () => {
+  await supa.auth.signOut();
+  dashboard.style.display = 'none';
+  loginScreen.style.display = 'flex';
+  document.getElementById('password').value = '';
+});
+
+/* ── Items CRUD ── */
+async function loadItems() {
+  const { data, error } = await supa
+    .from('menu_items')
+    .select('*')
+    .order('category', { ascending: true })
+    .order('created_at', { ascending: true });
+
+  if (error) {
+    showAlert(listAlert, 'שגיאה בטעינת התפריט: ' + error.message, 'error', false);
+    return;
+  }
+  allItems = data || [];
+  renderItems();
+}
+
+function renderItems() {
+  const items = activeFilter
+    ? allItems.filter(i => i.category === activeFilter)
+    : allItems;
+
+  itemCount.textContent = allItems.length;
+
+  if (!items.length) {
+    itemsBody.innerHTML = '';
+    emptyState.style.display = 'block';
+    emptyState.querySelector('p').textContent = allItems.length === 0
+      ? 'אין מנות בתפריט עדיין. הוסיפו את המנה הראשונה למעלה.'
+      : 'אין מנות בקטגוריה הזו.';
+    return;
+  }
+  emptyState.style.display = 'none';
+
+  itemsBody.innerHTML = items.map(it => `
+    <tr class="${it.is_available ? '' : 'row-unavailable'}" data-id="${it.id}">
+      <td class="name">${escapeHtml(it.name)}</td>
+      <td class="category">${escapeHtml(it.category || '—')}</td>
+      <td class="desc">${escapeHtml(it.description || '')}</td>
+      <td style="text-align:center;">
+        <label class="switch">
+          <input type="checkbox" ${it.is_available ? 'checked' : ''} data-toggle="${it.id}">
+          <span class="slider"></span>
+        </label>
+      </td>
+      <td class="actions">
+        <button class="btn danger" data-delete="${it.id}">
+          <i class="fas fa-trash" style="margin-left:0.25rem;"></i>מחק
+        </button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+/* Add new item */
+addForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('newName').value.trim();
+  const category = document.getElementById('newCategory').value;
+  const description = document.getElementById('newDesc').value.trim();
+
+  if (!name || !category) return;
+
+  addBtn.disabled = true;
+  addBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-left:0.4rem;"></i>שומר...';
+
+  const { error } = await supa
+    .from('menu_items')
+    .insert([{ name, category, description, is_available: true }]);
+
+  addBtn.disabled = false;
+  addBtn.innerHTML = '<i class="fas fa-plus" style="margin-left:0.4rem;"></i>הוסף לתפריט';
+
+  if (error) {
+    showAlert(addAlert, 'שגיאה בהוספה: ' + error.message, 'error');
+    return;
+  }
+  addForm.reset();
+  showAlert(addAlert, 'המנה נוספה בהצלחה ✓', 'success');
+  loadItems();
+});
+
+/* Delegated handlers for delete + toggle */
+itemsBody.addEventListener('click', async (e) => {
+  const delBtn = e.target.closest('[data-delete]');
+  if (delBtn) {
+    const id = delBtn.dataset.delete;
+    const item = allItems.find(i => i.id == id);
+    if (!confirm(`למחוק את "${item?.name || 'פריט זה'}"?`)) return;
+    delBtn.disabled = true;
+    const { error } = await supa.from('menu_items').delete().eq('id', id);
+    if (error) {
+      showAlert(listAlert, 'מחיקה נכשלה: ' + error.message, 'error');
+      delBtn.disabled = false;
+      return;
+    }
+    showAlert(listAlert, 'המנה נמחקה.', 'success');
+    loadItems();
+  }
+});
+
+itemsBody.addEventListener('change', async (e) => {
+  const toggle = e.target.closest('[data-toggle]');
+  if (toggle) {
+    const id = toggle.dataset.toggle;
+    const newVal = toggle.checked;
+    const { error } = await supa
+      .from('menu_items')
+      .update({ is_available: newVal })
+      .eq('id', id);
+    if (error) {
+      showAlert(listAlert, 'עדכון נכשל: ' + error.message, 'error');
+      toggle.checked = !newVal;
+      return;
+    }
+    const local = allItems.find(i => i.id == id);
+    if (local) local.is_available = newVal;
+    const row = toggle.closest('tr');
+    row.classList.toggle('row-unavailable', !newVal);
+  }
+});
+
+/* Filter chips */
+filterBar.addEventListener('click', (e) => {
+  const chip = e.target.closest('.chip');
+  if (!chip) return;
+  filterBar.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  activeFilter = chip.dataset.cat;
+  renderItems();
+});
+
+/* Init */
+checkSession();
+</script>
+</body>
+</html>
