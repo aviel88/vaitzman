@@ -1156,6 +1156,17 @@ nav.main-nav a.active {
   .mobile-menu { top: 84px; }
   .header-right .btn-reserve-header { display: none; }
 
+  /* Hero: anchor content near the top instead of centered (avoids huge empty gap) */
+  .hero {
+    min-height: auto;
+    align-items: flex-start;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+  .hero-content {
+    padding: 1rem 1.5rem;
+  }
+
   .form-row {
     grid-template-columns: 1fr;
   }
