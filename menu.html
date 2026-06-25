@@ -113,15 +113,16 @@ const SUPABASE_URL = 'https://umdtmwndmojticrgppib.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_eqPvn3xRV8fYH4lBXa0GLg_xm-M1vZP';
 const supa = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-/* ── Category metadata ── */
+/* ── Category metadata (defines the EXACT display order) ── */
 const CATEGORY_META = {
-  'מנות ראשונות וסלטים': { icon: 'fa-leaf',         order: 1 },
-  'מנות עיקריות מהגריל': { icon: 'fa-fire',         order: 2 },
-  'תבשילים':              { icon: 'fa-bowl-food',    order: 3 },
-  'לחמים מהתנור':        { icon: 'fa-bread-slice',  order: 4 },
-  'קינוחים':              { icon: 'fa-ice-cream',    order: 5 },
-  'שתייה':                { icon: 'fa-mug-hot',      order: 6 },
+  'מנות ראשונות וסלטים': { icon: 'fa-leaf',        order: 1 },
+  'מנות עיקריות':         { icon: 'fa-fire',        order: 2 },
+  'תבשילים':              { icon: 'fa-bowl-food',   order: 3 },
+  'לחמים מהתנור':        { icon: 'fa-bread-slice', order: 4 },
+  'קינוחים':              { icon: 'fa-ice-cream',   order: 5 },
+  'שתייה':                { icon: 'fa-mug-hot',     order: 6 },
 };
+// Unknown categories fall back to order 99 → rendered last
 
 function escapeHtml(s='') {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
