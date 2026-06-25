@@ -190,7 +190,7 @@ function initReservationForm() {
     };
 
     try {
-      await emailjs.send('service_ao7df3e', 'template_opgcued', params);
+      await emailjs.send('service_ao7df3e', 'template_dl89web', params);
       form.style.display = 'none';
       if (successEl) successEl.classList.add('show');
       window.scrollTo({ top: form.closest('.reservation-section').offsetTop - 80, behavior: 'smooth' });
@@ -239,7 +239,7 @@ function initContactForm() {
     };
 
     try {
-      await emailjs.send('service_ao7df3e', 'template_opgcued', params);
+      await emailjs.send('service_ao7df3e', 'template_dl89web', params);
       btn.textContent = 'ההודעה נשלחה! ✓';
       btn.style.background = '#2d6a4f';
       setTimeout(() => {
