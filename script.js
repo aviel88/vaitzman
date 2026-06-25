@@ -167,7 +167,7 @@ function initReservationForm() {
     });
   });
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     let allValid = true;
     form.querySelectorAll('input, select, textarea').forEach(input => {
@@ -175,9 +175,34 @@ function initReservationForm() {
     });
     if (!allValid) return;
 
-    form.style.display = 'none';
-    if (successEl) successEl.classList.add('show');
-    window.scrollTo({ top: form.closest('.reservation-section').offsetTop - 80, behavior: 'smooth' });
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'שולח...';
+
+    const params = {
+      form_type: 'הזמנת שולחן',
+      name: document.getElementById('resName').value.trim(),
+      phone: document.getElementById('resPhone').value.trim(),
+      email: document.getElementById('resEmail').value.trim() || '(לא צוין)',
+      date: document.getElementById('resDate').value,
+      time: document.getElementById('resTime').value,
+      guests: document.getElementById('resGuests').value,
+      notes: document.getElementById('resNotes').value.trim() || '(אין)',
+      message: `הזמנת שולחן חדשה — ${document.getElementById('resName').value.trim()} | ${document.getElementById('resGuests').value} סועדים | ${document.getElementById('resDate').value} ${document.getElementById('resTime').value}`
+    };
+
+    try {
+      await emailjs.send('service_ao7df3e', 'template_opgcued', params);
+      form.style.display = 'none';
+      if (successEl) successEl.classList.add('show');
+      window.scrollTo({ top: form.closest('.reservation-section').offsetTop - 80, behavior: 'smooth' });
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      alert('אירעה שגיאה בשליחת ההזמנה. אנא נסו שוב או התקשרו: 08-852-2593');
+    }
   });
 }
 
@@ -186,7 +211,7 @@ function initContactForm() {
   const form = document.getElementById('contactForm');
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     let allValid = true;
     form.querySelectorAll('input, textarea').forEach(input => {
@@ -201,15 +226,37 @@ function initContactForm() {
 
     const btn = form.querySelector('button[type="submit"]');
     const original = btn.textContent;
-    btn.textContent = 'ההודעה נשלחה! ✓';
+    btn.textContent = 'שולח...';
     btn.disabled = true;
-    btn.style.background = '#2d6a4f';
-    setTimeout(() => {
+
+    const params = {
+      form_type: 'יצירת קשר',
+      name: document.getElementById('ctName').value.trim(),
+      phone: document.getElementById('ctPhone').value.trim(),
+      email: '(לא צוין)',
+      date: '',
+      time: '',
+      guests: '',
+      notes: '',
+      message: document.getElementById('ctMessage').value.trim()
+    };
+
+    try {
+      await emailjs.send('service_ao7df3e', 'template_opgcued', params);
+      btn.textContent = 'ההודעה נשלחה! ✓';
+      btn.style.background = '#2d6a4f';
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.disabled = false;
+        btn.style.background = '';
+        form.reset();
+      }, 3500);
+    } catch (err) {
+      console.error('EmailJS error:', err);
       btn.textContent = original;
       btn.disabled = false;
-      btn.style.background = '';
-      form.reset();
-    }, 3500);
+      alert('אירעה שגיאה בשליחת ההודעה. אנא נסו שוב או התקשרו: 08-852-2593');
+    }
   });
 }
 
