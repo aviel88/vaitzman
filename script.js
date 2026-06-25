@@ -53,8 +53,8 @@ function buildFooter() {
         <p>מסעדה מרוקאית כשרה בנמל אשדוד.</p>
         <p>שלושה דורות של אוכל ביתי אותנטי.</p>
         <div class="footer-social">
-          <a href="#" aria-label="פייסבוק"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="אינסטגרם"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/vaitzman.ashdod" target="_blank" rel="noopener noreferrer" aria-label="פייסבוק"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/vaitzman.ashdod" target="_blank" rel="noopener noreferrer" aria-label="אינסטגרם"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
       <div class="footer-col">
