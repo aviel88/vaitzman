@@ -181,15 +181,12 @@ function initReservationForm() {
     submitBtn.textContent = 'שולח...';
 
     const params = {
-      form_type: 'הזמנת שולחן',
-      name: document.getElementById('resName').value.trim(),
+      from_name: document.getElementById('resName').value.trim(),
       phone: document.getElementById('resPhone').value.trim(),
-      email: document.getElementById('resEmail').value.trim() || '(לא צוין)',
       date: document.getElementById('resDate').value,
       time: document.getElementById('resTime').value,
       guests: document.getElementById('resGuests').value,
-      notes: document.getElementById('resNotes').value.trim() || '(אין)',
-      message: `הזמנת שולחן חדשה — ${document.getElementById('resName').value.trim()} | ${document.getElementById('resGuests').value} סועדים | ${document.getElementById('resDate').value} ${document.getElementById('resTime').value}`
+      notes: document.getElementById('resNotes').value.trim() || '(אין)'
     };
 
     try {
