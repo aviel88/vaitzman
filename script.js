@@ -27,6 +27,7 @@ function buildHeader() {
   return `
     <a class="header-logo" href="index.html" aria-label="מסעדת ויצמן - דף הבית">
       <img src="images/logo-enhanced.png" alt="מסעדת ויצמן">
+      <span class="logo-subtitle">גלאט כשר למהדרין</span>
     </a>
     <nav class="main-nav" aria-label="ניווט ראשי">
       ${navLinks}

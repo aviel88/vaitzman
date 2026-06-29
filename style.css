@@ -87,6 +87,9 @@ h1, h2, h3, h4 {
   object-fit: contain;
 }
 
+/* Hidden by default; shown on mobile only */
+.logo-subtitle { display: none; }
+
 .header-logo:hover {
   opacity: 0.88;
   transform: scale(1.02);
@@ -1217,16 +1220,41 @@ nav.main-nav a.active {
 @media (max-width: 768px) {
   #site-header {
     padding: 0 1.1rem;
-    height: 84px;
+    height: 100px;
     background: linear-gradient(135deg, #1a0a0a 0%, #2d1010 50%, #1C1C1C 100%);
     border-bottom: 1.5px solid #C9933A;
     box-shadow: 0 4px 18px rgba(0,0,0,0.4), 0 1px 0 rgba(201,147,58,0.15);
+    position: sticky;
+    justify-content: center;
   }
   .header-logo {
-    height: 64px;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
   }
   .header-logo img {
-    filter: drop-shadow(0 2px 6px rgba(201,147,58,0.25));
+    height: 70px;
+    filter: drop-shadow(0 2px 8px rgba(201,147,58,0.3));
+  }
+  .logo-subtitle {
+    display: block;
+    color: #C9933A;
+    font-family: 'Heebo', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-top: 2px;
+    opacity: 0.92;
+  }
+  .header-right {
+    position: absolute;
+    left: 1rem; /* always visually on the left, regardless of RTL */
+    top: 50%;
+    transform: translateY(-50%);
   }
   nav.main-nav,
   .kosher-badge {
@@ -1255,7 +1283,7 @@ nav.main-nav a.active {
   }
   .hamburger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
   .hamburger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-  .mobile-menu { top: 84px; }
+  .mobile-menu { top: 100px; }
   .header-right .btn-reserve-header { display: none; }
 
   /* Hero: anchor content near the top instead of centered (avoids huge empty gap) */
