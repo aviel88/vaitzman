@@ -404,6 +404,17 @@ nav.main-nav a.active {
   font-style: italic;
 }
 
+/* Desktop-only: serif hero title font + tighter gap between "מסעדת" and "ויצמן" */
+@media (min-width: 769px) {
+  .hero h1 {
+    font-family: 'Noto Serif Hebrew', serif;
+    line-height: 1.05;
+  }
+  .hero h1 .gold-name {
+    margin-top: 4px;
+  }
+}
+
 .hero-tagline {
   font-size: clamp(0.95rem, 2vw, 1.15rem);
   color: var(--text-light);
