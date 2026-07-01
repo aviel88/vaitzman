@@ -76,7 +76,6 @@ function buildFooter() {
     </div>
     <div class="footer-bottom">
       <p>© 2025 מסעדת ויצמן. כל הזכויות שמורות.</p>
-      <p>הבנאים 9, אשדוד | 08-852-2593</p>
     </div>
   `;
 }
