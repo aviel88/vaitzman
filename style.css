@@ -1219,38 +1219,17 @@ nav.main-nav a.active {
 
 @media (max-width: 768px) {
   #site-header {
-    padding: 0;
-    height: auto;
-    min-height: 80px;
+    padding: 0 1.1rem;
+    height: 84px;
     background: linear-gradient(135deg, #1a0a0a 0%, #2d1010 50%, #1C1C1C 100%);
     border-bottom: 1.5px solid #C9933A;
     box-shadow: 0 4px 18px rgba(0,0,0,0.4), 0 1px 0 rgba(201,147,58,0.15);
-    position: sticky;
-    justify-content: center;
   }
   .header-logo {
-    height: auto;
-    width: 100%;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    text-align: center;
+    height: 64px;
   }
   .header-logo img {
-    width: 100%;
-    height: auto;
-    max-height: 110px;
-    object-fit: cover;
-    display: block;
-  }
-  /* Subtitle already exists inside the logo image; hide our separate one */
-  .logo-subtitle { display: none; }
-  .header-right {
-    position: absolute;
-    left: 0.85rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 5;
+    filter: drop-shadow(0 2px 6px rgba(201,147,58,0.25));
   }
   nav.main-nav,
   .kosher-badge {
@@ -1279,7 +1258,7 @@ nav.main-nav a.active {
   }
   .hamburger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
   .hamburger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-  .mobile-menu { top: 110px; }
+  .mobile-menu { top: 84px; }
   .header-right .btn-reserve-header { display: none; }
 
   /* Hero: anchor content near the top instead of centered (avoids huge empty gap) */
