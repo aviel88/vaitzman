@@ -80,11 +80,25 @@ h1, h2, h3, h4 {
   transition: opacity 0.2s, transform 0.2s;
 }
 
-.header-logo img {
+.header-logo img.header-logo-img {
   height: 100%;
   width: auto;
-  display: block;
+  display: none; /* desktop shows the text logo instead */
   object-fit: contain;
+}
+
+.header-logo-text {
+  display: inline-block;
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  line-height: 1;
+  background: linear-gradient(135deg, #C9933A, #F0C060, #C9933A);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(201, 147, 58, 0.35);
 }
 
 /* Hidden by default; shown on mobile only */
@@ -1239,8 +1253,12 @@ nav.main-nav a.active {
   .header-logo {
     height: 64px;
   }
-  .header-logo img {
+  .header-logo img.header-logo-img {
+    display: block;
     filter: drop-shadow(0 2px 6px rgba(201,147,58,0.25));
+  }
+  .header-logo-text {
+    display: none;
   }
   nav.main-nav,
   .kosher-badge {
