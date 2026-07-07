@@ -89,10 +89,10 @@ h1, h2, h3, h4 {
 
 .header-logo-text {
   display: none; /* desktop: text logo hidden, shown on mobile only */
-  font-family: 'Gabriela', serif;
-  font-size: clamp(42px, 12vw, 58px);
+  font-family: 'Pinyon Script', cursive;
+  font-size: 52px;
   font-weight: 400;
-  letter-spacing: 8px;
+  letter-spacing: 15px;
   line-height: 1;
   background: linear-gradient(135deg, #C9933A, #F0C060, #C9933A);
   -webkit-background-clip: text;
@@ -1260,9 +1260,9 @@ nav.main-nav a.active {
     display: none;
   }
   .header-logo-text {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
+    display: block;
+    width: calc(100% - 60px);
+    text-align: justify;
   }
   .header-right {
     position: absolute;
