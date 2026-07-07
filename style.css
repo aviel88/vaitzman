@@ -89,10 +89,10 @@ h1, h2, h3, h4 {
 
 .header-logo-text {
   display: none; /* desktop: text logo hidden, shown on mobile only */
-  font-family: 'Frank Ruhl Libre', serif;
-  font-size: 38px;
-  font-weight: 700;
-  letter-spacing: 6px;
+  font-family: 'Gabriela', serif;
+  font-size: clamp(42px, 12vw, 58px);
+  font-weight: 400;
+  letter-spacing: 8px;
   line-height: 1;
   background: linear-gradient(135deg, #C9933A, #F0C060, #C9933A);
   -webkit-background-clip: text;
