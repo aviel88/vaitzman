@@ -1251,25 +1251,16 @@ nav.main-nav a.active {
     box-shadow: 0 4px 18px rgba(0,0,0,0.4), 0 1px 0 rgba(201,147,58,0.15);
   }
   .header-logo {
-    height: auto;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+    height: 60px;
   }
   .header-logo img.header-logo-img {
-    display: none;
+    display: block;
+    height: 100%;
+    width: auto;
+    box-shadow: 0 0 8px rgba(201, 147, 58, 0.4);
   }
   .header-logo-text {
-    display: block;
-    width: calc(100% - 60px);
-    text-align: justify;
-  }
-  .header-right {
-    position: absolute;
-    left: 0.85rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 5;
+    display: none;
   }
   nav.main-nav,
   .kosher-badge {
